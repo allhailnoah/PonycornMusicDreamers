@@ -1,0 +1,3 @@
+- [ ] find an idea
+- [ ] code it
+- [ ] publish it
