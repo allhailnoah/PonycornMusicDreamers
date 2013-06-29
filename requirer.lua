@@ -5,7 +5,7 @@
 --gamera = require "lib.gamera"
 --gui = require "Quickie"
 
---require "lib.middleclass"
+require "lib.middleclass"
 --require "lib.Tserial"
 
 --[[arc_path = 'Navi.arc.'

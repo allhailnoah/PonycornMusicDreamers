@@ -1,23 +1,32 @@
 game = {}
 
-t = {}  --x, y, time to stay alive
-pts = love.graphics.newImage("catpix.png")    --a particle
+Particle = require "particle"
+
+t = {}
 spawnagain = 0
 
 function game.draw()
-	for i, foo in pairs(t) do
-		love.graphics.draw(pts, t[i][1]-(pts:getWidth()/2), t[i][2]-(pts:getHeight()/2))
+	for i, part in pairs(t) do
+		part:draw()
 	end
 end
 
 function game.update(dt)
-	for i, foo in pairs(t) do
-		t[i][3] = t[i][3] - 1
-		if t[i][3] == 0 then table.remove(t, i) end
+	for i, part in pairs(t) do
+		part:update(dt)
+		if part.death <= 0 then table.remove(t, i) end
 	end
 	spawnagain = spawnagain - 30*dt
-	if love.keyboard.isDown(" ") and spawnagain <= 0 then
-		table.insert(t, {love.mouse.getX(), love.mouse.getY(), 2000})
+	if (mousedown or love.keyboard.isDown(" ")) and spawnagain <= 0 then
+		table.insert(t, Particle:new(love.mouse.getX(), love.mouse.getY(), 1000))
 		spawnagain = 3
 	end
+end
+
+function game.mousepressed()
+	mousedown = true
+end
+
+function game.mousereleased()
+	mousedown = false
 end
