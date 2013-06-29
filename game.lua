@@ -14,11 +14,11 @@ end
 function game.update(dt)
 	for i, part in pairs(t) do
 		part:update(dt)
-		if part.death <= 0 then table.remove(t, i) end
+		if part.death <= 0 or part.x < 0 or part.x > 800 or part.y < 0 or part.y > 600 then table.remove(t, i) end
 	end
 	spawnagain = spawnagain - 30*dt
 	if (mousedown or love.keyboard.isDown(" ")) and spawnagain <= 0 then
-		table.insert(t, Particle:new(love.mouse.getX(), love.mouse.getY(), 1000))
+		table.insert(t, Particle:new(love.mouse.getX(), love.mouse.getY(), 10000))
 		spawnagain = 3
 	end
 end
