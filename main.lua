@@ -7,7 +7,6 @@ function love.load()
 	paused = false
 	pausedopac = 0
 	maxframe = 0.1
-	love.graphics.setBackgroundColor(255,255,255)
 end
 
 function love.update(dt)

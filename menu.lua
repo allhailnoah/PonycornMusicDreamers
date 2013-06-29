@@ -22,6 +22,5 @@ function menu.keypressed(key)
 end
 
 function menu.draw()
-	love.graphics.setColor(0, 0, 0)
 	love.graphics.print(menustring, 0, 0)
 end
