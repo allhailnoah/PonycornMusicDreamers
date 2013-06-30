@@ -21,12 +21,13 @@ function game.draw()
 	love.graphics.draw(rainbow)
 	love.graphics.setBlendMode("alpha")
 	m1:play(400,0)
+	love.graphics.print(love.timer.getFPS(), 0, 0)
 end
 
 function game.update(dt)
 	for i, part in pairs(t) do
 		part:update(dt)
-		if part.death <= 0 or part.x < 0 or part.x > 800 or part.y < 0 or part.y > 600 then table.remove(t, i) end
+		if part.death <= 0 or part.x < 0 or part.x > 800 or part.y < 0 or part.y > 600 then part = nil table.remove(t, i) end
 	end
 	spawnagain = spawnagain - 30*dt
 	if (mousedown or love.keyboard.isDown(" ")) and spawnagain <= 0 then

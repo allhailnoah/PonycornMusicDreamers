@@ -20,24 +20,25 @@ function Particle:update(dt)
 	local gx = self.x - love.mouse.getX()
 	local gy = self.y - love.mouse.getY()
 	local totalDist = math.sqrt(gx^2 + gy^2)
-	if totalDist < 2 then totalDist = 2 end
 	local ax = gx/totalDist
 	local ay = gy/totalDist
-	if totalDist <= 100 then
+	if totalDist <= 100 and totalDist > 2 then
 		self.speed = (100/totalDist) * 100
-	else
-		if self.speed > 3 then
-			self.speed = self.speed - 200*dt
-		else
-			self.speed = 3
-		end
 	end
+	if self.speed > 3 then
+		self.speed = self.speed - 200*dt
+	else
+		self.speed = 3
+	end
+	if totalDist > 5 and self.speed > 2000 then self.speed = 0 end
 	
 	self.vx = ax*self.speed
 	self.vy = ay*self.speed
 	
-	self.x = self.x + self.vx*dt
-	self.y = self.y + self.vy*dt
+	if totalDist ~= 0 then
+		self.x = self.x + self.vx*dt
+		self.y = self.y + self.vy*dt
+	end
 	
 	self.timer = self.timer - 1*dt --decrease timer
 	pitch = self.y     --the pitch is equal to y (part 2 of the array)
