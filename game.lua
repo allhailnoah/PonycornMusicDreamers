@@ -11,7 +11,12 @@ rainbow = love.graphics.newImage("rainbow.png")
 partimage = love.graphics.newImage("catpix.png")
 partgrid = anim8.newGrid(7,7,partimage:getWidth(),partimage:getHeight())
 
-m1 = _navi:new("I had a dream once.", {box=false, wait=3, msg_spd=6, alxb='m', skip=false, alx='m'})
+m1 = _navi:new("I had a dream once.", {box=false, wait=1, msg_spd=7, alxb='m', skip=false, alx='m'})
+m2 = _navi:new("It was a wonderful dream, about many many things.", {box=false, msg_spd=17, wait=1, alxb='m', alx='m', skip=false})
+m3 = _navi:new("It was a void.", {box=false, wait=7, msg_spd=7, alxb='m', skip=false, alx='m'})
+m4 = _navi:new("It was a void.", {box=false, wait=7, msg_spd=7, alxb='m', skip=false, alx='m'})
+
+ma = {m1, m2, m3, m4}
 
 function game.draw()
 	for i, part in pairs(t) do
@@ -20,7 +25,7 @@ function game.draw()
 	love.graphics.setBlendMode("multiplicative")
 	love.graphics.draw(rainbow)
 	love.graphics.setBlendMode("alpha")
-	m1:play(400,0)
+	_navi:play_list(ma, 400, 0)
 	love.graphics.print(love.timer.getFPS(), 0, 0)
 end
 
