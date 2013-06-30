@@ -4,8 +4,8 @@ function Particle:initialize(x, y, terminate)
 	self.anim = anim8.newAnimation(partgrid('1-3',1, '2-1',1), 0.1)
 	self.w = 7
 	self.h = 7
-	self.x = x --+ math.random()
-	self.y = y --+ math.random()
+	self.x = x
+	self.y = y
 	self.death = terminate
 	self.vx = 0
 	self.vy = 0
