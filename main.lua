@@ -20,7 +20,7 @@ function love.update(dt)
 			love.event.quit()
 		end
 	end
-	--arc.check_keys(dt)
+	arc.check_keys(dt)
 end
 
 function love.draw()
@@ -28,7 +28,7 @@ function love.draw()
 	love.graphics.setColor(0,0,0,pausedopac)
 	love.graphics.rectangle("fill", 0, 0, love.graphics:getWidth(), love.graphics:getHeight())
 	love.graphics.setColor(255,255,255,255)
-	--arc.clear_key()
+	arc.clear_key()
 end
 
 function love.mousepressed(x, y, button)
@@ -47,7 +47,7 @@ function love.keypressed(key, unicode)
 	if gamestate.keypressed then
 		gamestate.keypressed(key)
 	end
-	--arc.set_key(key)
+	arc.set_key(key)
 end
 
 function love.keyreleased(key)

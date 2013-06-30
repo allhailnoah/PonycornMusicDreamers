@@ -9,6 +9,6 @@ require "lib.middleclass"
 --require "lib.Tserial"
 require "lib.slam"
 
---[[arc_path = 'Navi.arc.'
+arc_path = 'Navi.arc.'
 require(arc_path .. 'arc')
-_navi = require(arc_path .. 'navi')]]
+_navi = require(arc_path .. 'navi')

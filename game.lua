@@ -5,10 +5,13 @@ Particle = require "particle"
 t = {}
 spawnagain = 0
 pitch = 440
+
 auS = love.audio.newSource("tone.ogg","static")
 rainbow = love.graphics.newImage("rainbow.png")
 partimage = love.graphics.newImage("catpix.png")
 partgrid = anim8.newGrid(7,7,partimage:getWidth(),partimage:getHeight())
+
+m1 = _navi:new("I had a dream once.", {box=false, wait=3, msg_spd=6, alxb='m', skip=false, alx='m'})
 
 function game.draw()
 	for i, part in pairs(t) do
@@ -17,6 +20,7 @@ function game.draw()
 	love.graphics.setBlendMode("multiplicative")
 	love.graphics.draw(rainbow)
 	love.graphics.setBlendMode("alpha")
+	m1:play(400,0)
 end
 
 function game.update(dt)
