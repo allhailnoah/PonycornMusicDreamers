@@ -27,6 +27,8 @@ function game.draw()
 end
 
 function game.update(dt)
+	numS = love.audio.getNumSources()
+	love.graphics.print(numS,500,500)
 	for i, part in pairs(t) do
 		part:update(dt)
 		if part.death <= 0 or part.x < 0 or part.x > 800 or part.y < 0 or part.y > 600 then part = nil table.remove(t, i) end
@@ -41,7 +43,7 @@ function game.update(dt)
 		bgm:setLooping(false)
 		start = 1
 	--elseif bgm:isStopped() == true then love.event.push('quit') end
-	end  --remove if removing comment above
+	end
 end
 
 function game.mousepressed()

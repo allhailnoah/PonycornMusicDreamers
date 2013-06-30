@@ -59,7 +59,7 @@ function Particle:update(dt)
 		end
 		if self.timer <= 0 then
 			self.sound = love.audio.play(auS) --play source
-			self.timer = 1 --timer used to prevent overloading the sound card
+			self.timer = 0 --timer used to prevent overloading the sound card
 		end
 		sx = self.x - 400
 		self.sound:setDirection(sx,0,0)   --attempt to have x = speaker balance
