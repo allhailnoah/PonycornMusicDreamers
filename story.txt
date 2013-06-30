@@ -1,6 +1,6 @@
 I had a dream once. (0:00)      --allow player input (c)
-It was a wonderful dream, about many many things. (0:04)
-It was a void. (0:09)        --add a slight texture to the void (c)
+Throughout, I saw many, many things. (0:04)
+But first, it was a void. (0:09)        --add a slight texture to the void (c)
 A dark, dark void. (0:18)
 It was silent, except for a single underlying pattern. (0:45)
 Getting prettier (0:56)                   --add spark animation? (c)
