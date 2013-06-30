@@ -1,9 +1,9 @@
 local Particle = class("Particle")
 
 function Particle:initialize(x, y, terminate)
-	self.image = love.graphics.newImage("catpix.png")
-	self.w = self.image:getWidth()
-	self.h = self.image:getHeight()
+	self.anim = anim8.newAnimation(partgrid('1-3',1, '2-1',1), 0.1)
+	self.w = 7
+	self.h = 7
 	self.x = x --+ math.random()
 	self.y = y --+ math.random()
 	self.death = terminate
@@ -14,6 +14,7 @@ function Particle:initialize(x, y, terminate)
 end
 
 function Particle:update(dt)
+	self.anim:update(dt)
 	self.death = self.death - 400*dt
 	
 	local gx = self.x - love.mouse.getX()
@@ -25,13 +26,12 @@ function Particle:update(dt)
 	if totalDist <= 100 then
 		self.speed = (100/totalDist) * 100
 	else
-		if self.speed > 0 then
+		if self.speed > 3 then
 			self.speed = self.speed - 200*dt
 		else
-			self.speed = 0
+			self.speed = 3
 		end
 	end
-	if self.speed > 10000 then print(totalDist, self.speed) end
 	
 	self.vx = ax*self.speed
 	self.vy = ay*self.speed
@@ -65,7 +65,7 @@ function Particle:update(dt)
 end
 
 function Particle:draw()
-	love.graphics.draw(self.image, self.x-(self.w/2), self.y-(self.h/2))
+	self.anim:draw(partimage, self.x-(self.w/2), self.y-(self.h/2))
 end
 
 return Particle

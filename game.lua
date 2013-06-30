@@ -7,6 +7,8 @@ spawnagain = 0
 pitch = 440
 auS = love.audio.newSource("tone.ogg","static")
 rainbow = love.graphics.newImage("rainbow.png")
+partimage = love.graphics.newImage("catpix.png")
+partgrid = anim8.newGrid(7,7,partimage:getWidth(),partimage:getHeight())
 
 function game.draw()
 	for i, part in pairs(t) do
@@ -24,7 +26,7 @@ function game.update(dt)
 	end
 	spawnagain = spawnagain - 30*dt
 	if (mousedown or love.keyboard.isDown(" ")) and spawnagain <= 0 then
-		table.insert(t, Particle:new(love.mouse.getX(), love.mouse.getY(), 7500))
+		table.insert(t, Particle:new(love.mouse.getX(), love.mouse.getY(), 5000))
 		spawnagain = 3
 	end
 end
