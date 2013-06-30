@@ -1,9 +1,8 @@
 require "requirer"
 require "game"
-require "menu"
 
 function love.load()
-	gamestate = menu
+	gamestate = game
 	paused = false
 	pausedopac = 0
 	maxframe = 0.1
