@@ -7,6 +7,7 @@
 
 require "lib.middleclass"
 --require "lib.Tserial"
+require "lib.slam"
 
 --[[arc_path = 'Navi.arc.'
 require(arc_path .. 'arc')
