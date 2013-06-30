@@ -13,8 +13,8 @@ partgrid = anim8.newGrid(7,7,partimage:getWidth(),partimage:getHeight())
 
 ma = {}
 ma[1] = _navi:new("I had a dream once.", {box=false, wait=1, msg_spd=7, alxb='m', skip=false, alx='m'})
-ma[2] = _navi:new("It was a wonderful dream, about many many things.", {box=false, msg_spd=17, wait=1, alxb='m', alx='m', skip=false})
-ma[3] = _navi:new("It was a void.", {box=false, wait=7, msg_spd=7, alxb='m', skip=false, alx='m'})
+ma[2] = _navi:new("Throughout, I saw many, many things.", {box=false, msg_spd=17, wait=1, alxb='m', alx='m', skip=false})
+ma[3] = _navi:new("But first, it was a void.", {box=false, wait=7, msg_spd=7, alxb='m', skip=false, alx='m'})
 ma[4] = _navi:new("A dark, dark void.", {box=false, wait=24, msg_spd=7, alxb='m', skip=false, alx='m'})
 ma[5] = _navi:new("It was silent, except for a single underlying pattern.", {box=false, wait=3, msg_spd=7, alxb='m', skip=false, alx='m'})
 ma[6] = _navi:new("Getting prettier", {box=false, wait=0, msg_spd=3, alxb='m', skip=false, alx='m'})
