@@ -9,6 +9,8 @@ require "lib.middleclass"
 --require "lib.Tserial"
 require "lib.slam"
 
+Particle = require "particle"
+
 arc_path = 'Navi.arc.'
 require(arc_path .. 'arc')
 _navi = require(arc_path .. 'navi')

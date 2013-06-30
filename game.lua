@@ -1,7 +1,5 @@
 game = {}
 
-Particle = require "particle"
-
 t = {}
 spawnagain = 0
 pitch = 440
