@@ -15,7 +15,12 @@ ma = {}
 ma[1] = _navi:new("I had a dream once.", {box=false, wait=1, msg_spd=7, alxb='m', skip=false, alx='m'})
 ma[2] = _navi:new("It was a wonderful dream, about many many things.", {box=false, msg_spd=17, wait=1, alxb='m', alx='m', skip=false})
 ma[3] = _navi:new("It was a void.", {box=false, wait=7, msg_spd=7, alxb='m', skip=false, alx='m'})
-ma[4] = _navi:new("It was a void.", {box=false, wait=7, msg_spd=7, alxb='m', skip=false, alx='m'})
+ma[4] = _navi:new("A dark, dark void.", {box=false, wait=24, msg_spd=7, alxb='m', skip=false, alx='m'})
+ma[5] = _navi:new("It was silent, except for a single underlying pattern.", {box=false, wait=3, msg_spd=7, alxb='m', skip=false, alx='m'})
+ma[6] = _navi:new("Getting prettier", {box=false, wait=0, msg_spd=3, alxb='m', skip=false, alx='m'})
+ma[7] = _navi:new("With every spark.", {box=false, wait=0, msg_spd=2, alxb='m', skip=false, alx='m'})
+ma[8] = _navi:new("Poetry created by this song", {box=false, wait=1, msg_spd=5, alxb='m', skip=false, alx='m'})
+ma[9] = _navi:new("Conducted by you in a wonderful way", {box=false, wait=2, msg_spd=5, alxb='m', skip=false, alx='m'})
 
 function game.draw()
 	for i, part in pairs(t) do
