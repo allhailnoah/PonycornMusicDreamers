@@ -1,26 +1,23 @@
 require "requirer"
 require "game"
+require "ending"
 
 function love.load()
 	gamestate = game
 	paused = false
 	pausedopac = 0
-	maxframe = 0.1
+	maxframe = 0.2
 end
 
 function love.update(dt)
 	if not paused then
-		local gdt = dt
-		while gdt > 0 do
-			local nowdt = math.min(maxframe, gdt)
-			gamestate.update(nowdt)
-			gdt = gdt - maxframe
-		end
+		gamestate.update(dt)
+		arc.check_keys(dt)
+		tween.update(dt)
 		if love.keyboard.isDown("escape") then
 			love.event.quit()
 		end
 	end
-	arc.check_keys(dt)
 end
 
 function love.draw()
@@ -59,11 +56,11 @@ end
 function love.focus(f)
   if not f then
     pausedopac = 170
-	love.audio.pause()
+	bgm:pause()
 	paused = true
   else
     pausedopac = 0
-	love.audio.resume()
+	bgm:resume()
 	paused = false
   end
 end

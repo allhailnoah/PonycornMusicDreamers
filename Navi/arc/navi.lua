@@ -525,13 +525,13 @@ end
 
 -- plays a list of messages sequentially
 function _navi.play_list(m,x,y)
-    for i = 1,#m do
-        if m[i].pos ~= 'over' then
-            if m[i].pos == 'made' then m[i]:init() end
-            m[i]:play(x,y)
-            break
-        end
-    end
+	for i = 1,#m do
+		if m[i].pos ~= 'over' then
+			if m[i].pos == 'made' then m[i]:init() end
+			m[i]:play(x,y)
+			break
+		end
+	end
 end
 
 -- if width 'w' is specified, this adds newlines '|n' at the

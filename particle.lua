@@ -15,14 +15,13 @@ end
 
 function Particle:update(dt)
 	self.anim:update(dt)
-	self.death = self.death - 400*dt
 	
 	local gx = self.x - love.mouse.getX()
 	local gy = self.y - love.mouse.getY()
 	local totalDist = math.sqrt(gx^2 + gy^2)
 	local ax = gx/totalDist
 	local ay = gy/totalDist
-	if totalDist <= 100 and totalDist > 2 then
+	if totalDist <= 100 and totalDist > 3 and gameclock > 80 then
 		self.speed = (100/totalDist) * 100
 	end
 	if self.speed > 3 then
@@ -39,6 +38,8 @@ function Particle:update(dt)
 		self.x = self.x + self.vx*dt
 		self.y = self.y + self.vy*dt
 	end
+	
+	self.death = self.death - 400*dt
 	
 	self.timer = self.timer - 1*dt --decrease timer
 	pitch = self.y     --the pitch is equal to y (part 2 of the array)
@@ -59,12 +60,13 @@ function Particle:update(dt)
 		end
 		if self.timer <= 0 then
 			self.sound = love.audio.play(auS) --play source
-			self.timer = 1 --timer used to prevent overloading the sound card
+			self.timer = 1.5 --timer used to prevent overloading the sound card
 		end
 		sx = self.x - 400
 		self.sound:setDirection(sx,0,0)   --attempt to have x = speaker balance
 		self.sound:setDistance(5000,5000)
 		self.sound:setPitch(pitch)  --bend pitch
+		self.sound:setVolume(tweens.partvol)
 	end
 end
 
