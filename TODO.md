@@ -1,10 +1,4 @@
-# WHERE TO GO NEXT:
-
-* Well, I know you wanted to add a background track, Finnbar. You'd better get to that. The game can quit after 5 minutes, so that's all that we need. Arpeggio. =)
-* Add something to do with the x value, rather than y for just pitch. Perhaps x changes instrument? We should make sure to code this in the Particle.lua, remember.
-* Add some sort of minimal story? Navi could do the trick. Just have little messages come up through the five minute experience, talking about- how the narrator had a dream once? Make sure to disable messagebox windows if you'd want to do this. Perhaps he could ask questions at certain points that affect the background track?
-* If we have time, maybe we can try to figure out a way to record the song and give the player a file of it? I know it'd be complicated with where we are now, but it would add something.
-
-Less certain ideas:
-* Different particles have different sounds, spawned with different buttons.
-* Networking, but I really have trouble seeing how that would work.
+# Post-Compo:
+*We could add voice acting.
+*Add a sound effect when the void appears, preferably a deep drum.
+*Get a better font.

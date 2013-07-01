@@ -29,7 +29,7 @@ ma[6] = _navi:new("|cFB7422FFGetting prettier", {box=false, wait=30, msg_spd=5, 
 ma[7] = _navi:new("|cFB7422FFWith every spark.", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
 ma[8] = _navi:new("|cFB7422FFPoetry created by this song", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
 ma[9] = _navi:new("|cFB7422FFConducted by you in a wonderful way", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-ma[10] = _navi:new("|cFB7422FFLike a beatiful haiku", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+ma[10] = _navi:new("|cFB7422FFLike a beautiful haiku", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
 ma[11] = _navi:new("|cFB7422FFAbout sakura blossom", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
 ma[12] = _navi:new("|cFB7422FFWhich fell at 5cm per second", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
 ma[13] = _navi:new("|cFB7422FFWithin this void", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
