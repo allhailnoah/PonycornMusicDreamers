@@ -11,5 +11,5 @@ end
 
 function ending.draw()
 	love.graphics.draw(clouds, tweens.cloudx, 0)
-	ma[27]:play(400,0)
+	ma[28]:play(400,0)
 end
