@@ -15,6 +15,8 @@ partimage = love.graphics.newImage("catpix.png")
 love.graphics.setBackgroundColor(235,235,235)
 partgrid = anim8.newGrid(7,7,partimage:getWidth(),partimage:getHeight())
 
+released = true
+sandbox = false
 pretty = false
 spawnnow = false
 tweens={partvol=1,alpha=0,cloudx=0}
@@ -74,34 +76,36 @@ function game.update(dt)
 		table.insert(t, Particle:new(love.mouse.getX(), love.mouse.getY(), deathtime))
 		spawnagain = 3
 	end
-	gameclock = gameclock + 1 * dt
-	if gameclock > 207 then gamestate = ending
-	elseif gameclock > 193 then currentmsg = ma[27]
-	elseif gameclock > 182 then currentmsg = ma[26] tween(25, tweens, {partvol=0,alpha=255})
-	elseif gameclock > 180 then currentmsg = ma[25]
-	elseif gameclock > 174 then currentmsg = ma[24]
-	elseif gameclock > 170 then currentmsg = ma[23]
-	elseif gameclock > 164 then currentmsg = ma[22]
-	elseif gameclock > 157 then currentmsg = ma[21]
-	elseif gameclock > 150 then currentmsg = ma[20]
-	elseif gameclock > 145 then currentmsg = ma[19]
-	elseif gameclock > 137 then currentmsg = ma[18]
-	elseif gameclock > 133 then currentmsg = ma[17]
-	elseif gameclock > 130 then currentmsg = ma[16]
-	elseif gameclock > 127 then currentmsg = ma[15]
-	elseif gameclock > 120 then currentmsg = ma[14]
-	elseif gameclock > 112 then currentmsg = ma[13]
-	elseif gameclock > 105 then currentmsg = ma[12]
-	elseif gameclock > 97 then currentmsg = ma[11]
-	elseif gameclock > 89 then currentmsg = ma[10]
-	elseif gameclock > 80 then currentmsg = ma[9] deathtime = 5000
-	elseif gameclock > 73 then currentmsg = ma[8]
-	elseif gameclock > 62 then currentmsg = ma[7]
-	elseif gameclock > 56 then currentmsg = ma[6] pretty = true
-	elseif gameclock > 45 then currentmsg = ma[5]
-	elseif gameclock > 18 then currentmsg = ma[4]
-	elseif gameclock > 9 then currentmsg = ma[3] love.graphics.setBackgroundColor(0,0,0) spawnnow = true
-	elseif gameclock > 4 then currentmsg = ma[2]
+	if sandbox == false then
+		gameclock = gameclock + 1 * dt
+		if gameclock > 207 then gamestate = ending
+		elseif gameclock > 193 then currentmsg = ma[27]
+		elseif gameclock > 182 then currentmsg = ma[26] tween(25, tweens, {partvol=0,alpha=255})
+		elseif gameclock > 180 then currentmsg = ma[25]
+		elseif gameclock > 174 then currentmsg = ma[24]
+		elseif gameclock > 170 then currentmsg = ma[23]
+		elseif gameclock > 164 then currentmsg = ma[22]
+		elseif gameclock > 157 then currentmsg = ma[21]
+		elseif gameclock > 150 then currentmsg = ma[20]
+		elseif gameclock > 145 then currentmsg = ma[19]
+		elseif gameclock > 137 then currentmsg = ma[18]
+		elseif gameclock > 133 then currentmsg = ma[17]
+		elseif gameclock > 130 then currentmsg = ma[16]
+		elseif gameclock > 127 then currentmsg = ma[15]
+		elseif gameclock > 120 then currentmsg = ma[14]
+		elseif gameclock > 112 then currentmsg = ma[13]
+		elseif gameclock > 105 then currentmsg = ma[12]
+		elseif gameclock > 97 then currentmsg = ma[11]
+		elseif gameclock > 89 then currentmsg = ma[10]
+		elseif gameclock > 80 then currentmsg = ma[9] deathtime = 5000
+		elseif gameclock > 73 then currentmsg = ma[8]
+		elseif gameclock > 62 then currentmsg = ma[7]
+		elseif gameclock > 56 then currentmsg = ma[6] pretty = true
+		elseif gameclock > 45 then currentmsg = ma[5]
+		elseif gameclock > 18 then currentmsg = ma[4]
+		elseif gameclock > 9 then currentmsg = ma[3] love.graphics.setBackgroundColor(0,0,0) spawnnow = true
+		elseif gameclock > 4 then currentmsg = ma[2]
+		end
 	end
 end
 
@@ -111,4 +115,19 @@ end
 
 function game.mousereleased()
 	mousedown = false
+end
+
+function game.keypressed(key)
+	if key == "s" then
+		if released == true then
+			if sandbox == false then sandbox = true else sandbox = false end
+			released = false
+		end
+	end
+end
+
+function game.keyreleased(key)
+	if key == "s" then
+		released = true
+	end
 end
