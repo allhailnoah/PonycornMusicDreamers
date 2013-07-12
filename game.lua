@@ -8,7 +8,7 @@ deathtime = 2000
 
 auS = love.audio.newSource("tone.ogg","static")
 bgm = love.audio.newSource("bgm.ogg","stream")
-bgm:setLooping(false)
+bgm:setLooping(true)
 love.audio.play(bgm)
 rainbow = love.graphics.newImage("rainbow.png")
 partimage = love.graphics.newImage("catpix.png")
