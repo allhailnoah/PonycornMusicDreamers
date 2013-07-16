@@ -15,7 +15,7 @@ partimage = love.graphics.newImage("catpix.png")
 love.graphics.setBackgroundColor(235,235,235)
 partgrid = anim8.newGrid(7,7,partimage:getWidth(),partimage:getHeight())
 
-released = true
+remode = false
 sandbox = false
 pretty = false
 spawnnow = false
@@ -50,6 +50,7 @@ ma[25] = _navi:new("|cFB7422FFand as you go", {box=false, wait=30, msg_spd=18, a
 ma[26] = _navi:new("|cFB7422FFthe void lights up", {box=false, wait=30, msg_spd=10, alxb='m', skip=false, alx='m'})
 ma[27] = _navi:new("|cFB7422FFand you exit your pretty little void", {box=false, wait=30, msg_spd=7, alxb='m', skip=false, alx='m'})
 ma[28] = _navi:new("|cFB7422FFinto your pretty little world", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+sa = _navi:new("|cFB7422FFSANDBOX MODE", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
 currentmsg = ma[1]
 
 function game.draw()
@@ -61,12 +62,21 @@ function game.draw()
 		love.graphics.draw(rainbow)
 		love.graphics.setBlendMode("alpha")
 	end
-	currentmsg:play(400,0)
+	if sandbox == false then
+	        currentmsg:play(400,0)
+	else
+	        sa:play(400,0)
+	end
 	love.graphics.setColor(255,255,255,tweens.alpha)
 	love.graphics.rectangle("fill",0,0,800,600)
 end
 
 function game.update(dt)
+	if remode then
+		for i, part in pairs(t) do
+			table.remove(t, i)
+		end
+	end
 	for i, part in pairs(t) do
 		part:update(dt)
 		if part.death <= 0 or part.x < 0 or part.x > 800 or part.y < 0 or part.y > 600 then part = nil table.remove(t, i) end
@@ -106,6 +116,13 @@ function game.update(dt)
 		elseif gameclock > 9 then currentmsg = ma[3] love.graphics.setBackgroundColor(0,0,0) spawnnow = true
 		elseif gameclock > 4 then currentmsg = ma[2]
 		end
+		if gameclock > 9 then love.graphics.setBackgroundColor(0,0,0) spawnnow = true end
+		if gameclock > 56 then pretty = true end
+		if gameclock > 80 then deathtime = 5000 end
+	else
+	        love.graphics.setBackgroundColor(0,0,0) spawnnow = true
+		pretty = true
+		deathtime = 7500
 	end
 end
 
@@ -119,15 +136,14 @@ end
 
 function game.keypressed(key)
 	if key == "s" then
-		if released == true then
-			if sandbox == false then sandbox = true else sandbox = false end
-			released = false
-		end
+		if sandbox == false then sandbox = true else sandbox = false end
+	end
+	if key == "d" then
+	        remode = true
 	end
 end
 
 function game.keyreleased(key)
-	if key == "s" then
-		released = true
-	end
+	if key == "d" then
+	        remode = false
 end
