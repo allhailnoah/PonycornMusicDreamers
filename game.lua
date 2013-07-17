@@ -146,4 +146,5 @@ end
 function game.keyreleased(key)
 	if key == "d" then
 	        remode = false
+	end
 end
