@@ -37,7 +37,7 @@ arc.col = {
 
 -- font
 arc.fn = {}
-arc.fn.f = lg.newFont(12)
+arc.fn.f = lg.newFont("04B_03__.TTF", 15)
 arc.fn.h = arc.fn.f:getHeight()+2
 arc.fn.w = function(s) return arc.fn.f:getWidth(s) end
 lg.setFont(arc.fn.f)

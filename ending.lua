@@ -1,9 +1,11 @@
 ending = {}
 
-clouds = love.graphics.newImage("clouds.jpg")
+function ending.load()
+	tween(12, tweens, {cloudx=-50})
+	clouds = love.graphics.newImage("clouds.jpg")
+end
 
 function ending.update(dt)
-	tween(8, tweens, {cloudx=-30})
 	if tweens.cloudx == -30 then
 		love.event.quit()
 	end
