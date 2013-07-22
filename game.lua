@@ -73,8 +73,8 @@ function game.update(dt)
 	end
 	
 	for i, part in pairs(t) do
-		part:update(dt)
-		if part.death <= 0 or part.x < 0 or part.x > 799 or part.y < 0 or part.y > 599 then part = nil table.remove(t, i) end
+		if part.death <= 0 or part.x < 0 or part.x > 799 or part.y < 0 or part.y > 599 then part = nil table.remove(t, i)
+		else part:update(dt) end
 	end
 	
 	spawnagain = spawnagain - 30*dt

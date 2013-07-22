@@ -6,7 +6,7 @@ function ending.load()
 end
 
 function ending.update(dt)
-	if tweens.cloudx == -30 then
+	if tweens.cloudx == -50 then
 		love.event.quit()
 	end
 end
