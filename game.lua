@@ -6,11 +6,10 @@ pitch = 440
 gameclock = 0
 deathtime = 2000
 bgalpha = 0
+beginning = true
 
 auS = love.audio.newSource("tone.ogg","static")
 bgm = love.audio.newSource("bgm.ogg","stream")
-bgm:setLooping(true)
-music = love.audio.play(bgm)
 rainbow = love.image.newImageData("rainbow.png")
 bgpic = love.graphics.newImage("backpic.png")
 partimage = love.graphics.newImage("catpix.png")
@@ -65,6 +64,13 @@ function game.draw()
 end
 
 function game.update(dt)
+	if beginning then
+		bgm:setLooping(true)
+		music = love.audio.play(bgm)
+		beginning = false
+		love.audio.setVolume(1)
+		love.graphics.setFont(arc.fn.f)
+	end
 	if love.keyboard.isDown("d") or (love.keyboard.isDown("s") and gameclock < 182) then
 		for i, part in pairs(t) do
 			part = nil

@@ -1,15 +1,19 @@
 require "requirer"
 require "game"
 require "ending"
+require "menu"
 
 function love.load()
-	gamestate = game
+	gamestate = menu
 	paused = false
 	pausedopac = 0
 	maxframe = 0.2
 end
 
 function love.update(dt)
+	if start then
+		gamestate = game
+	end
 	if not paused then
 		gamestate.update(dt)
 		arc.check_keys(dt)
@@ -54,15 +58,17 @@ function love.keyreleased(key)
 end
 
 function love.focus(f)
-  if not f then
-    pausedopac = 170
-	bgm:pause()
-	paused = true
-  else
-    pausedopac = 0
-	bgm:resume()
-	paused = false
-  end
+	if gamestate~=menu then
+		if not f then
+			pausedopac = 170
+			bgm:pause()
+			paused = true
+		else
+			pausedopac = 0
+			bgm:resume()
+			paused = false
+	  	end
+	end
 end
 
 function sign(x)
