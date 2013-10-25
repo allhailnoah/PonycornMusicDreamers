@@ -71,8 +71,10 @@ function Particle:update(dt)
 	end
 
 	if pretty then
-		local r,g,b,a = rainbow:getPixel(400, self.y)
-		self.color = {r,g,b}
+		if self.y>0 and self.y<love.graphics.getHeight() then
+			local r,g,b,a = rainbow:getPixel(400, self.y)
+			self.color = {r,g,b}
+		end
 	end
 end
 

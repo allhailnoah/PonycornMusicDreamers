@@ -65,7 +65,7 @@ end
 
 function game.update(dt)
 	if beginning then
-		bgm:setLooping(true)
+		bgm:setLooping(false)
 		music = love.audio.play(bgm)
 		beginning = false
 		love.audio.setVolume(1)
