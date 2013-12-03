@@ -71,6 +71,7 @@ function game.update(dt)
 		love.audio.setVolume(1)
 		love.graphics.setFont(arc.fn.f)
 	end
+	if sandbox then music:pause() end
 	if love.keyboard.isDown("d") or (love.keyboard.isDown("s") and gameclock < 182) then
 		for i, part in pairs(t) do
 			part = nil
