@@ -13,6 +13,7 @@ delta = 0
 function loadSplash()
 	love.audio.setVolume(2.8)
 	love.audio.play(fim)
+    splalg = 0
 end
 
 function playSplash()
@@ -26,12 +27,21 @@ function playSplash()
 		x=4
 	elseif delta<3.7 then
 		x=5
-	elseif delta<10 then
+	elseif delta<11 then
 		x=6
 	else
 		return true
 	end
 	love.graphics.draw(sp[x])
+	if delta>7 then
+		if delta<10 then
+			splalg = ((delta-7)/3*6.8-3)^2*(delta-7)/3*6.8
+		else
+			splalg = 100
+		end
+		love.graphics.setColor(0,0,0,splalg/100*255)
+		love.graphics.rectangle("fill",0,0,800,600)
+	end
 	return false
 end
 
