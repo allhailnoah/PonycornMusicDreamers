@@ -35,7 +35,7 @@ function playSplash()
 	love.graphics.draw(sp[x])
 	if delta>7 then
 		if delta<10 then
-			splalg = ((delta-7)/3*6.8-3)^2*(delta-7)/3*6.8
+			splalg = (delta-7)/3*100
 		else
 			splalg = 100
 		end
