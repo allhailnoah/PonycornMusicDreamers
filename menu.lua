@@ -4,8 +4,6 @@ require("splash")
 
 bkg = love.graphics.newImage("backpic.png")
 
-titleFont = love.graphics.newFont("04B_03__.TTF",40)
-
 ready = true
 drawSplash = true
 start = false
@@ -29,7 +27,7 @@ function menu.draw()
 		end
 	else
 		love.graphics.draw(bkg)
-		love.graphics.setFont(titleFont)
+		f:set(40)
 		love.graphics.print("SONG OF SPARKS",50,100)
 		love.graphics.print("a musical toy",50,200)
 		love.graphics.print("for you to enjoy",50,250)
