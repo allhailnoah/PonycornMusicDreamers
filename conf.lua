@@ -1,6 +1,6 @@
 function love.conf(t)
     t.title = "Song of Sparks"
-    t.author = "Rebel Team All Hail Noah"
+    t.author = "Team Fimichi"
     t.console = false
     t.version = "0.8.0"
     t.screen.width = 800
