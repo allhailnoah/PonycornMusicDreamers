@@ -29,19 +29,29 @@ function menu.draw()
 		love.graphics.draw(bkg)
 		love.graphics.setColor(255,255,255,255)
 		f:set(40)
-		love.graphics.print("SONG OF SPARKS",50,100)
+		love.graphics.print("SONG OF SPARKS",50,50)
 		f:set(30)
-		love.graphics.print("a musical toy",50,200)
-		love.graphics.print("for you to enjoy",50,240)
-		love.graphics.print("just click to make notes",50,280)
-		love.graphics.print("and hear the sound as it floats",50,320)
+		love.graphics.print("a musical toy",50,150)
+		love.graphics.print("for you to enjoy",50,190)
+		love.graphics.print("just click to make notes",50,230)
+		love.graphics.print("and hear the sound as it floats",50,280)
 		f:set(32)
-		love.graphics.print("click down here to begin",50,400)
-		love.graphics.print("this game by tim, michi and finn!",50,440)
+		love.graphics.print("click down here to begin",50,350)
+		love.graphics.print("this game by tim, michi and finn!",50,390)
 		f:set(30)
+		local y = love.mouse.getY()
+		local x = love.mouse.getX()
+		if x>=50 and x<=350 and y>= 480 and y<=580 then
+			love.graphics.setColor(0,100,255)
+		else
+			love.graphics.setColor(255,255,255)
+		end
 		love.graphics.rectangle("line", 50, 480, 300, 100)
-		love.graphics.rectangle("line", 450, 480, 300, 100)
 		love.graphics.printf("Story Mode", 50, 510, 300, "center")
+		if x>=450 and x<=750 and y>=480 and y<=580 then
+			love.graphics.setColor(0,255,100)
+		else love.graphics.setColor(255,255,255) end
+		love.graphics.rectangle("line", 450, 480, 300, 100)
 		love.graphics.printf("Sandbox Mode", 450, 510, 300, "center")
 	end
 end
