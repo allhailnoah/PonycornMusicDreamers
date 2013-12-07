@@ -95,7 +95,9 @@ function game.update(dt)
 			end
 		end
 		if go then
-			table.insert(t, Particle:new(love.mouse.getX(), love.mouse.getY(), deathtime))
+			if ghosty then
+				table.insert(t, Ghosticle:new(love.mouse.getX(), love.mouse.getY(), deathtime))
+			else table.insert(t, Particle:new(love.mouse.getX(), love.mouse.getY(), deathtime)) end
 			spawnagain = 3
 		end
 	end
@@ -162,5 +164,8 @@ function game.keypressed(key)
 		else
 			music:resume()
 		end
+	end
+	if key == "g" then
+		ghosty = not ghosty
 	end
 end

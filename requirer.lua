@@ -10,6 +10,7 @@ require "lib.middleclass"
 require "lib.slam"
 
 Particle = require "particle"
+Ghosticle = require "ghosticle"
 
 arc_path = 'Navi.arc.'
 require(arc_path .. 'arc')
