@@ -73,11 +73,11 @@ function menu.mousepressed(x,y,b)
 		if y <= 580 and y >=480 then
 			if x <= 350 and x >= 50 then
 				sandbox = false
-				start = true
+				gamestate = game
 			end
 			if x <= 750 and x >= 450 then
 				sandbox = true
-				start = true
+				gamestate = game
 			end
 		end
 	end

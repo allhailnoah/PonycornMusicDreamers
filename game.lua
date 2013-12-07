@@ -13,6 +13,7 @@ bgm = love.audio.newSource("bgm.ogg","stream")
 rainbow = love.image.newImageData("rainbow.png")
 bgpic = love.graphics.newImage("backpic.png")
 partimage = love.graphics.newImage("catpix.png")
+circ = love.graphics.newImage("circle.png")
 love.graphics.setBackgroundColor(235,235,235)
 partgrid = anim8.newGrid(14,14,partimage:getWidth(),partimage:getHeight())
 
@@ -87,8 +88,16 @@ function game.update(dt)
 	spawnagain = spawnagain - 30*dt
 	
 	if (mousedown or love.keyboard.isDown(" ")) and spawnnow and spawnagain <= 0 then
-		table.insert(t, Particle:new(love.mouse.getX(), love.mouse.getY(), deathtime))
-		spawnagain = 3
+		local go = true
+		for i, part in pairs(t) do
+			if part.x == love.mouse.getX() and part.y == love.mouse.getY() then
+				go = false
+			end
+		end
+		if go then
+			table.insert(t, Particle:new(love.mouse.getX(), love.mouse.getY(), deathtime))
+			spawnagain = 3
+		end
 	end
 	
 	if not sandbox then

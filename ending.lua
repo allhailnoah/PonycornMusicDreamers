@@ -1,12 +1,13 @@
 ending = {}
 
 function ending.load()
+	t = nil
 	tween(12, tweens, {cloudx=-50})
 	clouds = love.graphics.newImage("clouds.jpg")
 end
 
 function ending.update(dt)
-	if tweens.cloudx >= -50 then
+	if tweens.cloudx <= -50 then
 		love.event.quit()
 	end
 end

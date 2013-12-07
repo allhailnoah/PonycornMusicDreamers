@@ -81,6 +81,11 @@ end
 function Particle:draw()
 	love.graphics.setColor(self.color)
 	self.anim:draw(partimage, self.x, self.y, 0, 0.6, 0.6, self.w/2, self.h/2)
+	love.graphics.setBlendMode("multiplicative")
+	love.graphics.setColor(self.color[1],self.color[2],self.color[3],25)
+	love.graphics.draw(circ,self.x-50,self.y-50)
+	love.graphics.setColor(255,255,255,255)
+	love.graphics.setBlendMode("alpha")
 end
 
 return Particle

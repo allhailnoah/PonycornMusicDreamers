@@ -11,9 +11,6 @@ function love.load()
 end
 
 function love.update(dt)
-	if start then
-		gamestate = game
-	end
 	if not paused then
 		gamestate.update(dt)
 		arc.check_keys(dt)
