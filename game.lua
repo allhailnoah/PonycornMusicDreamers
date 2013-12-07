@@ -81,7 +81,7 @@ function game.update(dt)
 	end
 	
 	for i, part in pairs(t) do
-		if part.death <= 0 or part.x < 0 or part.x > 799 or part.y < 0 or part.y > 599 then part = nil table.remove(t, i)
+		if part.death <= 0 then part = nil table.remove(t, i)
 		else part:update(dt) end
 	end
 	
