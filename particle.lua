@@ -7,12 +7,13 @@ function Particle:initialize(x, y, terminate)
 	self.w = 14
 	self.h = 14
 	self.death = terminate
-	self.initialdeath = terminate
 	self.vx = 0
 	self.vy = 0
 	self.speed = 0
 	self.timer = 0
 	self.color = {255,255,255}
+	self.alph = 40
+	tween(terminate, self, {alph = 0}, 'inQuint')
 end
 
 function Particle:update(dt)
@@ -41,7 +42,7 @@ function Particle:update(dt)
 		self.y = self.y + self.vy*dt
 	end
 
-	self.death = self.death - 400*dt
+	self.death = self.death - 1*dt
 
 	self.timer = self.timer - 1*dt --decrease timer
 	pitch = self.y     --the pitch is equal to y (part 2 of the array)
@@ -82,8 +83,8 @@ end
 function Particle:draw()
 	love.graphics.setColor(self.color)
 	self.anim:draw(partimage, self.x, self.y, 0, 0.6, 0.6, self.w/2, self.h/2)
-	love.graphics.setBlendMode("multiplicative")
-	love.graphics.setColor(self.color[1],self.color[2],self.color[3],200-200*self.death/self.initialdeath)
+	love.graphics.setBlendMode("additive")
+	love.graphics.setColor(self.color[1],self.color[2],self.color[3],self.alph)
 	love.graphics.draw(circ,self.x-50,self.y-50)
 	love.graphics.setColor(255,255,255,255)
 	love.graphics.setBlendMode("alpha")

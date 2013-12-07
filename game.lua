@@ -5,7 +5,7 @@ function game.load()
 	spawnagain = 0
 	pitch = 440
 	gameclock = 0
-	deathtime = 2000
+	deathtime = 5
 	bgalpha = 0
 	beginning = true
 
@@ -136,13 +136,13 @@ function game.update(dt)
 		if gameclock >= 9 then bgalpha = 255 spawnnow = true
 		else bgalpha = 0 spawnnow = false end
 		if gameclock >= 56 then pretty = true else pretty = false end
-		if gameclock >= 80 then conduct = true deathtime = 4000
-		else conduct = false deathtime = 2000 end
+		if gameclock >= 80 then conduct = true deathtime = 8
+		else conduct = false deathtime = 5 end
 	else
 		bgalpha = 255
 		spawnnow = true
 		pretty = true
-		deathtime = 7500
+		deathtime = 8
 		conduct = true
 		currentmsg = sa
 	end
