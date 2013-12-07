@@ -1,55 +1,57 @@
 game = {}
 
-t = {}
-spawnagain = 0
-pitch = 440
-gameclock = 0
-deathtime = 2000
-bgalpha = 0
-beginning = true
+function game.load()
+	t = {}
+	spawnagain = 0
+	pitch = 440
+	gameclock = 0
+	deathtime = 2000
+	bgalpha = 0
+	beginning = true
 
-auS = love.audio.newSource("tone.ogg","static")
-bgm = love.audio.newSource("bgm.ogg","stream")
-rainbow = love.image.newImageData("rainbow.png")
-bgpic = love.graphics.newImage("backpic.png")
-partimage = love.graphics.newImage("catpix.png")
-circ = love.graphics.newImage("circle.png")
-love.graphics.setBackgroundColor(235,235,235)
-partgrid = anim8.newGrid(14,14,partimage:getWidth(),partimage:getHeight())
+	auS = love.audio.newSource("tone.ogg","static")
+	bgm = love.audio.newSource("bgm.ogg","stream")
+	rainbow = love.image.newImageData("rainbow.png")
+	--bgpic = love.graphics.newImage("backpic.png")
+	partimage = love.graphics.newImage("catpix.png")
+	circ = love.graphics.newImage("circle.png")
+	love.graphics.setBackgroundColor(235,235,235)
+	partgrid = anim8.newGrid(14,14,partimage:getWidth(),partimage:getHeight())
 
-tweens={partvol=1,alpha=0,cloudx=0}
+	tweens={partvol=1,alpha=0,cloudx=0}
 
-ma = {}
-ma[1] = _navi:new("|c000000FFI had a dream once.", {box=false, wait=30, msg_spd=8, alxb='m', skip=false, alx='m', y=275})
-ma[2] = _navi:new("|c000000FFThroughout, I saw many, many things.", {box=false, msg_spd=17, wait=30, alxb='m', alx='m', skip=false, y=275})
-ma[3] = _navi:new("But first, it was a void.", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-ma[4] = _navi:new("A dark, dark void.", {box=false, wait=30, msg_spd=2, alxb='m', skip=false, alx='m'})
-ma[5] = _navi:new("It was silent, except for a single underlying pattern.", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-ma[6] = _navi:new("|cFB7422FFGetting prettier", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-ma[7] = _navi:new("|cFB7422FFWith every spark.", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-ma[8] = _navi:new("|cFB7422FFPoetry created by this song", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-ma[9] = _navi:new("|cFB7422FFConducted by you in a wonderful way", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-ma[10] = _navi:new("|cFB7422FFLike a beautiful haiku", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-ma[11] = _navi:new("|cFB7422FFAbout sakura blossom", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-ma[12] = _navi:new("|cFB7422FFWhich fell at 5cm per second", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-ma[13] = _navi:new("|cFB7422FFWithin this void", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-ma[14] = _navi:new("|cFB7422FFMajesty was created", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-ma[15] = _navi:new("|cFB7422FFLike the Disasterpeace track", {box=false, wait=30, msg_spd=12, alxb='m', skip=false, alx='m'})
-ma[16] = _navi:new("|cFB7422FFin the key of A minor", {box=false, wait=30, msg_spd=8, alxb='m', skip=false, alx='m'})
-ma[17] = _navi:new("|cFB7422FFthen major", {box=false, wait=30, msg_spd=8, alxb='m', skip=false, alx='m'})
-ma[18] = _navi:new("|cFB7422FFthen every key", {box=false, wait=30, msg_spd=7, alxb='m', skip=false, alx='m'})
-ma[19] = _navi:new("|cFB7422FFconducted with sparks", {box=false, wait=30, msg_spd=6, alxb='m', skip=false, alx='m'})
-ma[20] = _navi:new("|cFB7422FFin a continuous pattern", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-ma[21] = _navi:new("|cFB7422FFto make a pretty tune", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-ma[22] = _navi:new("|cFB7422FFa song of sparks", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-ma[23] = _navi:new("|cFB7422FFin your pretty void", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-ma[24] = _navi:new("|cFB7422FFinstruments are added", {box=false, wait=30, msg_spd=7, alxb='m', skip=false, alx='m'})
-ma[25] = _navi:new("|cFB7422FFand as you go", {box=false, wait=30, msg_spd=18, alxb='m', skip=false, alx='m'})
-ma[26] = _navi:new("|cFB7422FFthe void lights up", {box=false, wait=30, msg_spd=10, alxb='m', skip=false, alx='m'})
-ma[27] = _navi:new("|cFB7422FFand you exit your pretty little void", {box=false, wait=30, msg_spd=7, alxb='m', skip=false, alx='m'})
-ma[28] = _navi:new("into your pretty little world", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-sa = _navi:new("|cFB7422FFSANDBOX MODE", {box=false, wait=1000000, msg_spd=5, alxb='m', skip=false, alx='m'})
-currentmsg = ma[1]
+	ma = {}
+	ma[1] = _navi:new("|c000000FFI had a dream once.", {box=false, wait=30, msg_spd=8, alxb='m', skip=false, alx='m', y=275})
+	ma[2] = _navi:new("|c000000FFThroughout, I saw many, many things.", {box=false, msg_spd=17, wait=30, alxb='m', alx='m', skip=false, y=275})
+	ma[3] = _navi:new("But first, it was a void.", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+	ma[4] = _navi:new("A dark, dark void.", {box=false, wait=30, msg_spd=2, alxb='m', skip=false, alx='m'})
+	ma[5] = _navi:new("It was silent, except for a single underlying pattern.", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+	ma[6] = _navi:new("|cFB7422FFGetting prettier", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+	ma[7] = _navi:new("|cFB7422FFWith every spark.", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+	ma[8] = _navi:new("|cFB7422FFPoetry created by this song", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+	ma[9] = _navi:new("|cFB7422FFConducted by you in a wonderful way", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+	ma[10] = _navi:new("|cFB7422FFLike a beautiful haiku", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+	ma[11] = _navi:new("|cFB7422FFAbout sakura blossom", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+	ma[12] = _navi:new("|cFB7422FFWhich fell at 5cm per second", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+	ma[13] = _navi:new("|cFB7422FFWithin this void", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+	ma[14] = _navi:new("|cFB7422FFMajesty was created", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+	ma[15] = _navi:new("|cFB7422FFLike the Disasterpeace track", {box=false, wait=30, msg_spd=12, alxb='m', skip=false, alx='m'})
+	ma[16] = _navi:new("|cFB7422FFin the key of A minor", {box=false, wait=30, msg_spd=8, alxb='m', skip=false, alx='m'})
+	ma[17] = _navi:new("|cFB7422FFthen major", {box=false, wait=30, msg_spd=8, alxb='m', skip=false, alx='m'})
+	ma[18] = _navi:new("|cFB7422FFthen every key", {box=false, wait=30, msg_spd=7, alxb='m', skip=false, alx='m'})
+	ma[19] = _navi:new("|cFB7422FFconducted with sparks", {box=false, wait=30, msg_spd=6, alxb='m', skip=false, alx='m'})
+	ma[20] = _navi:new("|cFB7422FFin a continuous pattern", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+	ma[21] = _navi:new("|cFB7422FFto make a pretty tune", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+	ma[22] = _navi:new("|cFB7422FFa song of sparks", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+	ma[23] = _navi:new("|cFB7422FFin your pretty void", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+	ma[24] = _navi:new("|cFB7422FFinstruments are added", {box=false, wait=30, msg_spd=7, alxb='m', skip=false, alx='m'})
+	ma[25] = _navi:new("|cFB7422FFand as you go", {box=false, wait=30, msg_spd=18, alxb='m', skip=false, alx='m'})
+	ma[26] = _navi:new("|cFB7422FFthe void lights up", {box=false, wait=30, msg_spd=10, alxb='m', skip=false, alx='m'})
+	ma[27] = _navi:new("|cFB7422FFand you exit your pretty little void", {box=false, wait=30, msg_spd=7, alxb='m', skip=false, alx='m'})
+	ma[28] = _navi:new("into your pretty little world", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
+	sa = _navi:new("|cFB7422FFSANDBOX MODE", {box=false, wait=1000000, msg_spd=5, alxb='m', skip=false, alx='m'})
+	currentmsg = ma[1]
+end
 
 function game.draw()
 	love.graphics.setColor(255,255,255,bgalpha)
@@ -104,7 +106,7 @@ function game.update(dt)
 	
 	if not sandbox then
 		gameclock = gameclock + 1 * dt
-		if gameclock >= 207 then ending.load() gamestate = ending
+		if gameclock >= 207 then change(ending)
 		elseif gameclock >= 193 then currentmsg = ma[27]
 		elseif gameclock >= 182 then currentmsg = ma[26] tween(25, tweens, {partvol=0,alpha=255})
 		elseif gameclock >= 180 then currentmsg = ma[25]
