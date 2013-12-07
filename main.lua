@@ -2,9 +2,10 @@ require "requirer"
 require "game"
 require "ending"
 require "menu"
+require "splash"
 
 function love.load()
-	gamestate = menu
+	change(splash)
 	paused = false
 	pausedopac = 0
 	maxframe = 0.2
@@ -24,6 +25,12 @@ function love.draw()
 	love.graphics.rectangle("fill", 0, 0, love.graphics:getWidth(), love.graphics:getHeight())
 	love.graphics.setColor(255,255,255,255)
 	arc.clear_key()
+end
+
+function change(state)
+	love.audio.stop()
+	gamestate = state
+	state.load()
 end
 
 function love.mousepressed(x, y, button)
