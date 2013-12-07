@@ -11,7 +11,7 @@ end
 function Ghosticle:draw()
 	love.graphics.setColor(self.color)
 	local bigmove = 90 * (self.death/self.initialdeath) + 10
-	local smallmove =75-0 (65 * (self.death/self.initialdeath) + 10)
+	local smallmove =75- (65 * (self.death/self.initialdeath) + 10)
 	self.anim:draw(partimage, self.x, self.y, 0, 0.6, 0.6, self.w/2, self.h/2)
 	self.anim:draw(partimage, self.x, self.y + bigmove, 0, 0.6, 0.6, self.w/2, self.h/2)
 	self.anim:draw(partimage, self.x, self.y - bigmove, 0, 0.6, 0.6, self.w/2, self.h/2)
