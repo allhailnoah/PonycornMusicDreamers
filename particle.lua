@@ -42,8 +42,6 @@ function Particle:update(dt)
 		self.y = self.y + self.vy*dt
 	end
 
-	self.death = self.death - 1*dt
-
 	self.timer = self.timer - 1*dt --decrease timer
 	pitch = self.y     --the pitch is equal to y (part 2 of the array)
 	if pitch > 300 then
@@ -78,6 +76,8 @@ function Particle:update(dt)
 			self.color = {r,g,b}
 		end
 	end
+	
+	self.death = self.death - 1*dt
 end
 
 function Particle:draw()

@@ -4,6 +4,24 @@ function menu.load()
 	bgpic = love.graphics.newImage("backpic.png")
 end
 
+function loadgame()
+	auS = love.audio.newSource("tone.ogg","static")
+	rainbow = love.image.newImageData("rainbow.png")
+	partimage = love.graphics.newImage("catpix.png")
+	circ = love.graphics.newImage("circle.png")
+	love.graphics.setBackgroundColor(235,235,235)
+	partgrid = anim8.newGrid(14,14,partimage:getWidth(),partimage:getHeight())
+	tweens={partvol=1,alpha=0,cloudx=0}
+	
+	t = {}
+	spawnagain = 0
+	gameclock = 0
+	deathtime = 5
+	bgalpha = 0
+	
+	love.graphics.setFont(arc.fn.f)
+end
+
 function menu.update(dt)
 end
 
@@ -44,12 +62,10 @@ function menu.mousepressed(x,y,b)
 	if b == "l" then
 		if y <= 580 and y >=480 then
 			if x <= 350 and x >= 50 then
-				sandbox = false
 				change(game)
 			end
 			if x <= 750 and x >= 450 then
-				sandbox = true
-				change(game)
+				change(sandbox)
 			end
 		end
 	end
