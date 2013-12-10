@@ -7,10 +7,18 @@ function Ghosticle:initialize(x, y, terminate, type)
 	self.type = type
 	if self.type == 8 then
 		self.circles = {}
-		self.circles[1] = {math.random(1,20),math.random(1,20),math.random(1,3),{math.random(0,255),math.random(0,255),math.random(0,255)}}
-		self.circles[2] = {math.random(1,20),math.random(1,20),math.random(1,3),{math.random(0,255),math.random(0,255),math.random(0,255)}}
-		self.circles[3] = {math.random(1,20),math.random(1,20),math.random(1,3),{math.random(0,255),math.random(0,255),math.random(0,255)}}
-		self.circles[4] = {math.random(1,20),math.random(1,20),math.random(1,3),{math.random(0,255),math.random(0,255),math.random(0,255)}}
+		self.circles[1] = {x = math.random(1,20), y = math.random(1,20), s = 1, c = {math.random(0,255),math.random(0,255),math.random(0,255)}}
+		self.circles[2] = {x = math.random(1,20), y = math.random(1,20), s = 2, c = {math.random(0,255),math.random(0,255),math.random(0,255)}}
+		self.circles[3] = {x = math.random(1,20), y = math.random(1,20), s = 3, c = {math.random(0,255),math.random(0,255),math.random(0,255)}}
+		self.circles[4] = {x = math.random(1,20), y = math.random(1,20), s = 4, c = {math.random(0,255),math.random(0,255),math.random(0,255)}}
+		self.circles[5] = {x = math.random(1,20), y = math.random(1,20), s = 5, c = {math.random(0,255),math.random(0,255),math.random(0,255)}}
+		self.circles[6] = {x = math.random(1,20), y = math.random(1,20), s = 6, c = {math.random(0,255),math.random(0,255),math.random(0,255)}}
+		self.circles[7] = {x = math.random(1,20), y = math.random(1,20), s = 7, c = {math.random(0,255),math.random(0,255),math.random(0,255)}}
+		self.circles[8] = {x = math.random(1,20), y = math.random(1,20), s = 8, c = {math.random(0,255),math.random(0,255),math.random(0,255)}}
+		for i,v in ipairs(self.circles) do
+			tween(terminate, v, {x = 10, y = 10, s = 5})
+		end
+		tween(terminate, self, {x = math.random(0,800), y = math.random(0,600)})
 	end
 end
 
@@ -62,8 +70,8 @@ end
 function Ghosticle:drawRndCircles()
 	for i,v in ipairs(self.circles) do
 		love.graphics.setBlendMode("multiplicative")
-		love.graphics.setColor(v[4])
-		love.graphics.draw(circ, self.x + v[1]-10, self.y + v[2]-10, 0, v[3] * (3.1-i), v[3] * (self.factor[1]), math.random(1,4), math.random(1,4))
+		love.graphics.setColor(v["c"])
+		love.graphics.draw(circ, self.x + v["x"]-10+self.bigmove, self.y + v["y"]-10+self.smallmove, 0, v["s"], v["s"], math.random(1,15), math.random(1,15))
 	end
 end
 

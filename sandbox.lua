@@ -35,7 +35,7 @@ function sandbox.update(dt)
 		end
 		spawnagain = 3
 	end
-	if ghosty and math.random(0,255) == 42 then
+	if ghosty and math.random(1,42) == 42 then
 		table.insert(t, Ghosticle:new(math.random(0,800),math.random(0,600), deathtime / 16, 8))
 	end
 end
