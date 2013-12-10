@@ -1,24 +1,7 @@
 game = {}
 
 function game.load()
-	t = {}
-	spawnagain = 0
-	pitch = 440
-	gameclock = 0
-	deathtime = 2000
-	bgalpha = 0
-	beginning = true
-
-	auS = love.audio.newSource("tone.ogg","static")
-	bgm = love.audio.newSource("bgm.ogg","stream")
-	rainbow = love.image.newImageData("rainbow.png")
-	--bgpic = love.graphics.newImage("backpic.png")
-	partimage = love.graphics.newImage("catpix.png")
-	circ = love.graphics.newImage("circle.png")
-	love.graphics.setBackgroundColor(235,235,235)
-	partgrid = anim8.newGrid(14,14,partimage:getWidth(),partimage:getHeight())
-
-	tweens={partvol=1,alpha=0,cloudx=0}
+	loadgame()
 
 	ma = {}
 	ma[1] = _navi:new("|c000000FFI had a dream once.", {box=false, wait=30, msg_spd=8, alxb='m', skip=false, alx='m', y=275})
@@ -49,8 +32,12 @@ function game.load()
 	ma[26] = _navi:new("|cFB7422FFthe void lights up", {box=false, wait=30, msg_spd=10, alxb='m', skip=false, alx='m'})
 	ma[27] = _navi:new("|cFB7422FFand you exit your pretty little void", {box=false, wait=30, msg_spd=7, alxb='m', skip=false, alx='m'})
 	ma[28] = _navi:new("into your pretty little world", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
-	sa = _navi:new("|cFB7422FFSANDBOX MODE", {box=false, wait=1000000, msg_spd=5, alxb='m', skip=false, alx='m'})
 	currentmsg = ma[1]
+	
+	bgm = love.audio.newSource("bgm.ogg","stream")
+	bgm:setLooping(false)
+    music = love.audio.play(bgm)
+	spawnnow = false
 end
 
 function game.draw()
@@ -60,94 +47,50 @@ function game.draw()
 	for i, part in pairs(t) do
 		part:draw()
 	end
-	love.graphics.setColor(255,255,255)
 	currentmsg:play(400,0)
 	love.graphics.setColor(255,255,255,tweens.alpha)
 	love.graphics.rectangle("fill",0,0,800,600)
 end
 
 function game.update(dt)
-	if beginning then
-		bgm:setLooping(false)
-		music = love.audio.play(bgm)
-		beginning = false
-		love.audio.setVolume(1)
-		love.graphics.setFont(arc.fn.f)
-	end
-	if sandbox then music:pause() end
-	if love.keyboard.isDown("d") or (love.keyboard.isDown("s") and gameclock < 182) then
-		for i, part in pairs(t) do
-			part = nil
-			table.remove(t, i)
-		end
-	end
+	sandbox.update(dt)
 	
-	for i, part in pairs(t) do
-		if part.death <= 0 then part = nil table.remove(t, i)
-		else part:update(dt) end
-	end
+	gameclock = gameclock + 1*dt
 	
-	spawnagain = spawnagain - 30*dt
-	
-	if (mousedown or love.keyboard.isDown(" ")) and spawnnow and spawnagain <= 0 then
-		local go = true
-		for i, part in pairs(t) do
-			if part.x == love.mouse.getX() and part.y == love.mouse.getY() then
-				go = false
-			end
-		end
-		if go then
-			if ghosty then
-				table.insert(t, Ghosticle:new(love.mouse.getX(), love.mouse.getY(), deathtime))
-			else table.insert(t, Particle:new(love.mouse.getX(), love.mouse.getY(), deathtime)) end
-			spawnagain = 3
-		end
-	end
-	
-	if not sandbox then
-		gameclock = gameclock + 1 * dt
-		if gameclock >= 207 then change(ending)
-		elseif gameclock >= 193 then currentmsg = ma[27]
-		elseif gameclock >= 182 then currentmsg = ma[26] tween(25, tweens, {partvol=0,alpha=255})
-		elseif gameclock >= 180 then currentmsg = ma[25]
-		elseif gameclock >= 174 then currentmsg = ma[24]
-		elseif gameclock >= 170 then currentmsg = ma[23]
-		elseif gameclock >= 164 then currentmsg = ma[22]
-		elseif gameclock >= 157 then currentmsg = ma[21]
-		elseif gameclock >= 150 then currentmsg = ma[20]
-		elseif gameclock >= 145 then currentmsg = ma[19]
-		elseif gameclock >= 137 then currentmsg = ma[18]
-		elseif gameclock >= 133 then currentmsg = ma[17]
-		elseif gameclock >= 130 then currentmsg = ma[16]
-		elseif gameclock >= 127 then currentmsg = ma[15]
-		elseif gameclock >= 120 then currentmsg = ma[14]
-		elseif gameclock >= 112 then currentmsg = ma[13]
-		elseif gameclock >= 105 then currentmsg = ma[12]
-		elseif gameclock >= 97 then currentmsg = ma[11]
-		elseif gameclock >= 89 then currentmsg = ma[10]
-		elseif gameclock >= 80 then currentmsg = ma[9]
-		elseif gameclock >= 73 then currentmsg = ma[8]
-		elseif gameclock >= 62 then currentmsg = ma[7]
-		elseif gameclock >= 56 then currentmsg = ma[6]
-		elseif gameclock >= 45 then currentmsg = ma[5]
-		elseif gameclock >= 18 then currentmsg = ma[4]
-		elseif gameclock >= 9 then currentmsg = ma[3]
-		elseif gameclock >= 4 then currentmsg = ma[2]
-		else currentmsg = ma[1]end
+	if gameclock >= 207 then change(ending)
+	elseif gameclock >= 193 then currentmsg = ma[27]
+	elseif gameclock >= 182 then currentmsg = ma[26] tween(25, tweens, {partvol=0,alpha=255})
+	elseif gameclock >= 180 then currentmsg = ma[25]
+	elseif gameclock >= 174 then currentmsg = ma[24]
+	elseif gameclock >= 170 then currentmsg = ma[23]
+	elseif gameclock >= 164 then currentmsg = ma[22]
+	elseif gameclock >= 157 then currentmsg = ma[21]
+	elseif gameclock >= 150 then currentmsg = ma[20]
+	elseif gameclock >= 145 then currentmsg = ma[19]
+	elseif gameclock >= 137 then currentmsg = ma[18]
+	elseif gameclock >= 133 then currentmsg = ma[17]
+	elseif gameclock >= 130 then currentmsg = ma[16]
+	elseif gameclock >= 127 then currentmsg = ma[15]
+	elseif gameclock >= 120 then currentmsg = ma[14]
+	elseif gameclock >= 112 then currentmsg = ma[13]
+	elseif gameclock >= 105 then currentmsg = ma[12]
+	elseif gameclock >= 97 then currentmsg = ma[11]
+	elseif gameclock >= 89 then currentmsg = ma[10]
+	elseif gameclock >= 80 then currentmsg = ma[9]
+	elseif gameclock >= 73 then currentmsg = ma[8]
+	elseif gameclock >= 62 then currentmsg = ma[7]
+	elseif gameclock >= 56 then currentmsg = ma[6]
+	elseif gameclock >= 45 then currentmsg = ma[5]
+	elseif gameclock >= 18 then currentmsg = ma[4]
+	elseif gameclock >= 9 then currentmsg = ma[3]
+	elseif gameclock >= 4 then currentmsg = ma[2]
+	else currentmsg = ma[1]end
 		
-		if gameclock >= 9 then bgalpha = 255 spawnnow = true
-		else bgalpha = 0 spawnnow = false end
-		if gameclock >= 56 then pretty = true else pretty = false end
-		if gameclock >= 80 then conduct = true deathtime = 4000
-		else conduct = false deathtime = 2000 end
-	else
-		bgalpha = 255
-		spawnnow = true
-		pretty = true
-		deathtime = 7500
-		conduct = true
-		currentmsg = sa
-	end
+	if gameclock >= 9 then bgalpha = 255 spawnnow = true
+	else bgalpha = 0 spawnnow = false end
+	if gameclock >= 56 then pretty = true else pretty = false end
+	if gameclock >= 80 then conduct = true deathtime = 8
+	else conduct = false deathtime = 5 end
 end
 
 function game.mousepressed()
@@ -156,18 +99,4 @@ end
 
 function game.mousereleased()
 	mousedown = false
-end
-
-function game.keypressed(key)
-	if key == "s" and gameclock < 182 then
-		sandbox = not sandbox
-		if not music:isPaused() then
-			music:pause()
-		else
-			music:resume()
-		end
-	end
-	if key == "g" then
-		ghosty = not ghosty
-	end
 end

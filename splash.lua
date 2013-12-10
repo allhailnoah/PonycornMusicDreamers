@@ -18,6 +18,7 @@ function splash.load()
 	fim = love.audio.newSource("splashers/fimichi.wav")
 	love.audio.play(fim)
 	tick = 0
+	x=1
 end
 
 function splash.update(dt)

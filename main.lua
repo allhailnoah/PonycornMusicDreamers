@@ -3,6 +3,7 @@ require "game"
 require "ending"
 require "menu"
 require "splash"
+require "sandbox"
 
 function love.load()
 	change(splash)
@@ -62,14 +63,14 @@ function love.keyreleased(key)
 end
 
 function love.focus(f)
-	if gamestate~=menu then
+	if gamestate~=splash then
 		if not f then
 			pausedopac = 170
-			bgm:pause()
+			love.audio.pause()
 			paused = true
 		else
 			pausedopac = 0
-			bgm:resume()
+			love.audio.resume()
 			paused = false
 	  	end
 	end
