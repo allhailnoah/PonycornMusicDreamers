@@ -3,7 +3,7 @@ sandbox = {}
 function sandbox.load()
 	loadgame()
 
-	sa = _navi:new("|cFB7422FFSANDBOX MODE", {box=false, wait=1000000, msg_spd=5, alxb='m', skip=false, alx='m'})
+	sa = _navi:new("|cFB7422FFPress G to activate ghostly mode", {box=false, wait=1000000, msg_spd=5, alxb='m', skip=false, alx='m'})
 
 	pretty = true
 	conduct = true
@@ -28,8 +28,15 @@ function sandbox.update(dt)
 	end
 
 	if (mousedown or love.keyboard.isDown(" ")) and spawnnow and spawnagain <= 0 and go then
-		table.insert(t, Particle:new(love.mouse.getX(), love.mouse.getY(), deathtime))
+		if ghosty then
+			table.insert(t, Ghosticle:new(love.mouse.getX(), love.mouse.getY(), deathtime, math.random(1,7)))
+		else
+			table.insert(t, Particle:new(love.mouse.getX(), love.mouse.getY(), deathtime))
+		end
 		spawnagain = 3
+	end
+	if ghosty and math.random(0,255) == 42 then
+		table.insert(t, Ghosticle:new(math.random(0,800),math.random(0,600), deathtime / 16, 8))
 	end
 end
 
@@ -39,6 +46,10 @@ function sandbox.draw()
 		part:draw()
 	end
 	sa:play(400,0)
+end
+
+function sandbox.keypressed(key)
+	if key == "g" then ghosty = not ghosty end
 end
 
 function sandbox.mousepressed()
