@@ -1,5 +1,7 @@
 local Particle = class("Particle")
 
+pitches = {55,58,61,65,69,73,77,82,87,92,98,104,110,117,123,131,139,147,156,165,175,185,196,208,220,233,247,262,277,294,311,330,349,370,392,415,440,466,494,523,554,587,622,659,698}
+
 function Particle:initialize(x, y, terminate)
 	self.anim = anim8.newAnimation(partgrid('1-3',1, '2-1',1), 0.1)
 	self.x = x
@@ -44,6 +46,23 @@ function Particle:update(dt)
 
 	self.timer = self.timer - 1*dt --decrease timer
 	pitch = self.y     --the pitch is equal to y (part 2 of the array)
+	dif = 99999999
+	dVal = 0
+	for i in pairs(pitches) do
+		if(pitches[i]-pitch > 0) then
+			if(pitches[i]-pitch < dif) then
+				dif = pitches[i]-pitch
+				dVal = pitches[i]
+			end
+		else
+			if(pitch-pitches[i] < dif) then
+				dif = pitch-pitches[i]
+				dVal = pitches[i]
+			end
+		end
+	end
+	pitch = dVal
+	print(pitch)
 	if pitch > 300 then
 		pitch = pitch - 300   --work out distance
 		m = 1    --double or half?
@@ -69,7 +88,6 @@ function Particle:update(dt)
 		self.sound:setPitch(pitch)  --bend pitch
 		self.sound:setVolume(tweens.partvol)
 	end
-
 	if pretty then
 		if self.y>0 and self.y<love.graphics.getHeight() then
 			local r,g,b,a = rainbow:getPixel(0, math.floor(self.y))
@@ -85,7 +103,7 @@ function Particle:draw()
 	self.anim:draw(partimage, self.x, self.y, 0, 0.6, 0.6, self.w/2, self.h/2)
 	love.graphics.setBlendMode("additive")
 	love.graphics.setColor(self.color[1],self.color[2],self.color[3],self.alph)
-	love.graphics.draw(circ,self.x-50,self.y-50)
+	love.graphics.draw(circ,self.x,self.y,0,(1.5+math.sin((self.death+1)/2)),(1.5+math.sin((self.death+1)/2)),50,50)
 	love.graphics.setColor(255,255,255,255)
 	love.graphics.setBlendMode("alpha")
 end
