@@ -43,7 +43,7 @@ function love.mousepressed(x, y, button)
 	if button == "m" then
 		love.graphics.setCanvas(love.graphics.newCanvas())
 		love.draw()
-		love.graphics.getCanvas():getImageData():encode("test.png")
+		love.graphics.getCanvas():getImageData():encode("screenshot"..os.time()..".png")
 		love.graphics.setCanvas()
 	end
 	if gamestate.mousepressed then
