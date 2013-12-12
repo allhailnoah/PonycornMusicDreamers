@@ -38,13 +38,14 @@ function sandbox.update(dt)
 		prevPitch=finalPitch
 		local pitching = {} --yes that is a pun of "bitching"
 		for i, part in pairs(t) do --yes it has to be seperate
+			if part.type ~= 8 then
 			for x=1,#pitches,1 do
 				if pitches[x] == part.pitch then
 					table.insert(pitching,x)  --get all the values of the particles as members of pitches[]
 					--print(x)
 					break
 				end
-			end
+			end end
 		end
 		if #pitching > 0 then --check to see if there are particles
 			panic=false

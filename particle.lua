@@ -95,7 +95,7 @@ function Particle:update(dt)
 			self.color = {r,g,b}
 		end
 	end
-	
+	if self.type~=8 then self.sound:setVolume(0) end
 	self.death = self.death - 1*dt
 end
 
