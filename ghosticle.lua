@@ -18,7 +18,7 @@ function Ghosticle:initialize(x, y, terminate, type)
 		for i,v in ipairs(self.circles) do
 			tween(terminate, v, {x = 10, y = 10, s = 5})
 		end
-		tween(terminate, self, {x = math.random(0,800), y = math.random(0,600)})
+		tween(terminate, self, {x = 0, y = 0})
 	end
 end
 
