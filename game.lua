@@ -48,7 +48,10 @@ function game.draw()
 	for i, part in pairs(t) do
 		part:draw()
 	end
-	currentmsg:play(400,0)
+	f:set(15)
+	if not paused then
+		currentmsg:play(400,0)
+	end
 	love.graphics.setColor(255,255,255,tweens.alpha)
 	love.graphics.rectangle("fill",0,0,800,600)
 end
