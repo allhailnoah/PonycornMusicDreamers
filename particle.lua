@@ -15,6 +15,7 @@ function Particle:initialize(x, y, terminate)
 	self.timer = 0
 	self.color = {255,255,255}
 	self.alph = 40
+	self.pitch = 0
 	tween(terminate, self, {alph = 0}, 'inQuint')
 end
 
@@ -62,7 +63,7 @@ function Particle:update(dt)
 		end
 	end
 	pitch = dVal
-	print(pitch)
+	self.pitch = dVal
 	if pitch > 300 then
 		pitch = pitch - 300   --work out distance
 		m = 1    --double or half?
@@ -86,7 +87,7 @@ function Particle:update(dt)
 		self.sound:setDirection(sx,0,0)   --attempt to have x = speaker balance
 		self.sound:setDistance(5000,5000)
 		self.sound:setPitch(pitch)  --bend pitch
-		self.sound:setVolume(tweens.partvol)
+		self.sound:setVolume(tweens.partvol/2)
 	end
 	if pretty then
 		if self.y>0 and self.y<love.graphics.getHeight() then

@@ -5,7 +5,9 @@ function menu.load()
 end
 
 function loadgame()
-	auS = love.audio.newSource("tone.ogg","static")
+	auS = love.audio.newSource("toneA.ogg","static")
+	auS:setVolume(0.1)
+	harmonyEng = love.audio.newSource("toneB.ogg","static")
 	rainbow = love.image.newImageData("rainbow.png")
 	partimage = love.graphics.newImage("catpix.png")
 	circ = love.graphics.newImage("circle.png")

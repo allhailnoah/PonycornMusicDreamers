@@ -28,6 +28,7 @@ function love.draw()
 	if paused then
 		f:set(50)
 		love.graphics.printf("Game paused", 50, 285, 700, "center")
+	else f:set(15)
 	end
 	arc.clear_key()
 end

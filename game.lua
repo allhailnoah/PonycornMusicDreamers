@@ -38,6 +38,7 @@ function game.load()
 	bgm:setLooping(false)
     music = love.audio.play(bgm)
 	spawnnow = false
+	sandbox.load(false)
 end
 
 function game.draw()
