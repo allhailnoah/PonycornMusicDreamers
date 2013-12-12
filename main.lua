@@ -40,6 +40,12 @@ function change(state)
 end
 
 function love.mousepressed(x, y, button)
+	if button == "m" then
+		love.graphics.setCanvas(love.graphics.newCanvas())
+		love.draw()
+		love.graphics.getCanvas():getImageData():encode("test.png")
+		love.graphics.setCanvas()
+	end
 	if gamestate.mousepressed then
 		gamestate.mousepressed(x, y, button)
 	end
