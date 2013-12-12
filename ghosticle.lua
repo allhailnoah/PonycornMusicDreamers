@@ -2,6 +2,7 @@ local Ghosticle = class("Ghosticle", Particle)
 
 function Ghosticle:initialize(x, y, terminate, type)
 	Particle.initialize(self,x,y,terminate)
+	self.life = terminate
 	self.factor = {1}
 	tween(terminate, self.factor, {0})
 	self.type = type
@@ -18,12 +19,17 @@ function Ghosticle:initialize(x, y, terminate, type)
 		for i,v in ipairs(self.circles) do
 			tween(terminate, v, {x = 10, y = 10, s = 5})
 		end
-		tween(terminate, self, {x = 0, y = 0})
+		self.twid = tween(4 * terminate, self, {x = love.mouse.getX() - 250, y = love.mouse.getY() - 250})
 	end
 end
 
 function Ghosticle:update(dt)
 	Particle.update(self,dt)
+	if self.type == 8 then
+		tween.stop(self.twid)
+		tween.reset(self.twid)
+		self.twid = tween(4 * (self.life - self.death), self, {x = love.mouse.getX()- 250, y = love.mouse.getY()- 250})
+	end
 end
 
 function Ghosticle:drawMain()
@@ -71,7 +77,7 @@ function Ghosticle:drawRndCircles()
 	for i,v in ipairs(self.circles) do
 		love.graphics.setBlendMode("multiplicative")
 		love.graphics.setColor(v["c"])
-		love.graphics.draw(circ, self.x + v["x"]-10+self.bigmove, self.y + v["y"]-10+self.smallmove, 0, v["s"], v["s"], math.random(1,15), math.random(1,15))
+		love.graphics.draw(circ, self.x + v["x"]-10+self.bigmove, self.y + v["y"]-10+self.smallmove, 0, v["s"], v["s"], 0.5*v["s"], 0.5*v["s"])
 	end
 end
 
