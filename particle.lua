@@ -85,7 +85,7 @@ function Particle:update(dt)
 		end
 		sx = self.x - 400
 		self.sound:setDirection(sx,0,0)   --attempt to have x = speaker balance
-		self.sound:setDistance(5000,5000)
+		self.sound:setAttenuationDistances(5000,5000)
 		self.sound:setPitch(pitch)  --bend pitch
 		self.sound:setVolume(tweens.partvol/2)
 	end
