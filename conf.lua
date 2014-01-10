@@ -3,7 +3,7 @@ function love.conf(t)
 	t.author = "Team Fimichi"
 	t.url = "http://allhailnoah.github.io/PonycornMusicDreamers"
 	t.identity = "fimichi_sparks"
-	t.console = true
+	t.console = false
 	t.version = "0.8.0"
 	t.screen.width = 800
 	t.screen.height = 600
