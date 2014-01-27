@@ -16,6 +16,7 @@ function Particle:initialize(x, y, terminate)
 	self.color = {255,255,255}
 	self.alph = 40
 	self.pitch = 0
+	self.type = 8 --I have no idea what type is help me, just added to make sure that particles actually make sound
 	tween(terminate, self, {alph = 0}, 'inQuint')
 end
 
