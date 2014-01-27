@@ -4,6 +4,7 @@ function Ghosticle:initialize(x, y, terminate, type)
 	Particle.initialize(self,x,y,terminate)
 	self.life = terminate
 	self.factor = {1}
+	self.mode = "additive"
 	tween(terminate, self.factor, {0})
 	self.type = type
 	if self.type == 8 then
@@ -33,7 +34,7 @@ function Ghosticle:update(dt)
 end
 
 function Ghosticle:drawMain()
-	love.graphics.setBlendMode("multiplicative")
+	love.graphics.setBlendMode(self.mode)
 	love.graphics.setColor(self.color[1],self.color[2],self.color[3],1)
 	love.graphics.draw(circ,self.x,self.y, 0, 2*self.factor[1], 2*self.factor[1], 50, 50)
 	love.graphics.setColor(self.color)
@@ -75,8 +76,8 @@ end
 
 function Ghosticle:drawRndCircles()
 	for i,v in ipairs(self.circles) do
-		love.graphics.setBlendMode("multiplicative")
-		love.graphics.setColor(v["c"])
+		love.graphics.setBlendMode(self.mode)
+		love.graphics.setColor(v["c"][1],v["c"][2],v["c"][3], 10)
 		love.graphics.draw(circ, self.x + v["x"]-10+self.bigmove, self.y + v["y"]-10+self.smallmove, 0, v["s"], v["s"], 0.5*v["s"], 0.5*v["s"])
 	end
 end
