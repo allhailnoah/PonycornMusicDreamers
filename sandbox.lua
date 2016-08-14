@@ -103,7 +103,7 @@ function sandbox.update(dt)
 					 --play source
 					timer = 3 --timer used to prevent overloading the sound card
 				end
-				sound:setAttenuationDistances(5000,5000)
+				--sound:setAttenuationDistances(5000,5000)
 				sound:setPitch(finalPitch)  --bend pitch
 			end
 		end

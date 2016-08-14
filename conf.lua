@@ -4,7 +4,7 @@ function love.conf(t)
 	t.url = "http://allhailnoah.github.io/PonycornMusicDreamers"
 	t.identity = "fimichi_sparks"
 	t.console = true
-	t.version = "0.9.0"
+	t.version = "0.10.1"
 	t.window.width = 800
 	t.window.height = 600
 	t.modules.joystick = false

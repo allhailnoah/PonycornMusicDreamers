@@ -4,7 +4,7 @@ function Ghosticle:initialize(x, y, terminate, type)
 	Particle.initialize(self,x,y,terminate)
 	self.life = terminate
 	self.factor = {1}
-	self.mode = "additive"
+	self.mode = "add"
 	tween(terminate, self.factor, {0})
 	self.type = type
 	if self.type == 8 then

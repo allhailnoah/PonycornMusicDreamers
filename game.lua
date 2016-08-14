@@ -33,10 +33,10 @@ function game.load()
 	ma[27] = _navi:new("|cFB7422FFand you exit your pretty little void", {box=false, wait=30, msg_spd=7, alxb='m', skip=false, alx='m'})
 	ma[28] = _navi:new("into your pretty little world", {box=false, wait=30, msg_spd=5, alxb='m', skip=false, alx='m'})
 	currentmsg = ma[1]
-	
+
 	bgm = love.audio.newSource("bgm.ogg","stream")
 	bgm:setLooping(false)
-    music = love.audio.play(bgm)
+  music = love.audio.play(bgm)
 	spawnnow = false
 	sandbox.load(false)
 end
@@ -58,9 +58,9 @@ end
 
 function game.update(dt)
 	sandbox.update(dt)
-	
+
 	gameclock = gameclock + 1*dt
-	
+
 	if gameclock >= 207 then change(ending)
 	elseif gameclock >= 193 then currentmsg = ma[27]
 	elseif gameclock >= 182 then currentmsg = ma[26] tween(25, tweens, {partvol=0,alpha=255})
@@ -89,7 +89,7 @@ function game.update(dt)
 	elseif gameclock >= 9 then currentmsg = ma[3]
 	elseif gameclock >= 4 then currentmsg = ma[2]
 	else currentmsg = ma[1]end
-		
+
 	if gameclock >= 9 then bgalpha = 255 spawnnow = true
 	else bgalpha = 0 spawnnow = false end
 	if gameclock >= 56 then pretty = true else pretty = false end

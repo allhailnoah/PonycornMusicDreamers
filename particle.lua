@@ -85,8 +85,8 @@ function Particle:update(dt)
 			self.timer = 1.5 --timer used to prevent overloading the sound card
 		end
 		sx = self.x - 400
-		self.sound:setDirection(sx,0,0)   --attempt to have x = speaker balance
-		self.sound:setAttenuationDistances(5000,5000)
+		--self.sound:setDirection(sx,0,0)   --attempt to have x = speaker balance
+		--self.sound:setAttenuationDistances(5000,5000)
 		self.sound:setPitch(pitch)  --bend pitch
 		self.sound:setVolume(tweens.partvol/2)
 	end
@@ -103,7 +103,7 @@ end
 function Particle:draw()
 	love.graphics.setColor(self.color)
 	self.anim:draw(partimage, self.x, self.y, 0, 0.6, 0.6, self.w/2, self.h/2)
-	love.graphics.setBlendMode("additive")
+	love.graphics.setBlendMode("add")
 	love.graphics.setColor(self.color[1],self.color[2],self.color[3],self.alph)
 	love.graphics.draw(circ,self.x,self.y,0,(1.5+math.sin((self.death+1)/2)),(1.5+math.sin((self.death+1)/2)),50,50)
 	love.graphics.setColor(255,255,255,255)

@@ -40,6 +40,9 @@ function change(state)
 end
 
 function love.mousepressed(x, y, button)
+  if button == 1 then button = "l"
+  elseif button == 2 then button = "r"
+  elseif button == 3 then button = "m" end
 	if button == "m" then
 		love.graphics.setCanvas(love.graphics.newCanvas())
 		love.draw()
